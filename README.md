@@ -47,22 +47,6 @@ bash
 ngrok http 5000
 3. Update the `WEBAPP_URL` in your `.env` file with the ngrok URL.
 
-## Project Structure
-├── app/
-│ ├── init.py
-│ ├── routes.py
-│ └── templates/
-│ ├── index.html
-│ ├── privacy.html
-│ └── contact.html
-├── bot/
-│ └── telegram_bot.py
-├── config.py
-├── run.py
-├── .env
-├── .env.example
-└── README.md
-
 ## Contributing
 
 1. Fork the repository
