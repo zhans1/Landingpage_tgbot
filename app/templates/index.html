@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Modern Landing Page</title>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+
+            :root {
+                --primary-color: #2563eb;
+                --secondary-color: #1e40af;
+                --text-color: #1f2937;
+                --light-text: #6b7280;
+                --background: #ffffff;
+                --light-background: #f3f4f6;
+            }
+
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Inter', sans-serif;
+                line-height: 1.6;
+                color: var(--text-color);
+                background-color: var(--background);
+            }
+
+            .hero {
+                padding: 6rem 2rem;
+                text-align: center;
+                background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            }
+
+            .container {
+                max-width: 1200px;
+                margin: 0 auto;
+                padding: 0 2rem;
+            }
+
+            .hero-title {
+                font-size: 3.5rem;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 1.5rem;
+                background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+                -webkit-background-clip: text;
+                background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+                color: var(--light-text);
+                margin-bottom: 2.5rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .features {
+                padding: 5rem 2rem;
+                background-color: var(--background);
+            }
+
+            .features-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin-top: 3rem;
+            }
+
+            .feature-card {
+                padding: 2rem;
+                border-radius: 1rem;
+                background-color: var(--light-background);
+                transition: transform 0.3s ease;
+            }
+
+            .feature-card:hover {
+                transform: translateY(-5px);
+            }
+
+            .feature-icon {
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                color: var(--primary-color);
+            }
+
+            .feature-title {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 0.5rem;
+            }
+
+            .feature-description {
+                color: var(--light-text);
+                font-size: 1rem;
+            }
+
+            .cta {
+                padding: 5rem 2rem;
+                text-align: center;
+                background-color: var(--light-background);
+            }
+
+            .cta-title {
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+            }
+
+            .cta-description {
+                color: var(--light-text);
+                margin-bottom: 2rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .button {
+                display: inline-block;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+                font-weight: 500;
+                color: white;
+                background-color: var(--primary-color);
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+            }
+
+            .button:hover {
+                background-color: var(--secondary-color);
+            }
+
+            @media (max-width: 768px) {
+                .hero-title {
+                    font-size: 2.5rem;
+                }
+
+                .hero-subtitle {
+                    font-size: 1.125rem;
+                }
+
+                .cta-title {
+                    font-size: 2rem;
+                }
+            }
+
+            /* Добавляем стили для формы */
+            .form-container {
+                max-width: 500px;
+                margin: 2rem auto;
+                padding: 2rem;
+                background: var(--background);
+                border-radius: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .form-group {
+                margin-bottom: 1.5rem;
+                text-align: left;
+            }
+
+            .form-label {
+                display: block;
+                margin-bottom: 0.5rem;
+                color: var(--text-color);
+                font-weight: 500;
+            }
+
+            .form-input {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 2px solid var(--light-background);
+                border-radius: 0.5rem;
+                font-size: 1rem;
+                transition: border-color 0.3s ease;
+            }
+
+            .form-input:focus {
+                outline: none;
+                border-color: var(--primary-color);
+            }
+
+            .form-select {
+                width: 100%;
+                padding: 0.75rem 1rem;
+                border: 2px solid var(--light-background);
+                border-radius: 0.5rem;
+                font-size: 1rem;
+                background-color: white;
+                cursor: pointer;
+            }
+
+            .submit-button {
+                width: 100%;
+                padding: 1rem;
+                border: none;
+                border-radius: 0.5rem;
+                background-color: var(--primary-color);
+                color: white;
+                font-size: 1rem;
+                font-weight: 500;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+
+            .submit-button:hover {
+                background-color: var(--secondary-color);
+            }
+
+            .success-message {
+                display: none;
+                padding: 1rem;
+                background-color: #10B981;
+                color: white;
+                border-radius: 0.5rem;
+                margin-top: 1rem;
+            }
+
+            /* Добавим стили для секции с ценами */
+            .pricing {
+                padding: 5rem 2rem;
+                background: linear-gradient(135deg, #f9fafb 0%, #f3f4f6 100%);
+            }
+
+            .pricing-title {
+                text-align: center;
+                font-size: 2.5rem;
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: var(--text-color);
+            }
+
+            .pricing-subtitle {
+                text-align: center;
+                color: var(--light-text);
+                margin-bottom: 3rem;
+                max-width: 600px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .pricing-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+                margin-top: 2rem;
+            }
+
+            .pricing-card {
+                background: var(--background);
+                border-radius: 1rem;
+                padding: 2rem;
+                text-align: center;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                position: relative;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .pricing-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+            }
+
+            .pricing-card.popular {
+                border: 2px solid var(--primary-color);
+            }
+
+            .popular-badge {
+                position: absolute;
+                top: 1rem;
+                right: -2rem;
+                background: var(--primary-color);
+                color: white;
+                padding: 0.25rem 3rem;
+                transform: rotate(45deg);
+                font-size: 0.875rem;
+                font-weight: 500;
+            }
+
+            .price-name {
+                font-size: 1.25rem;
+                font-weight: 600;
+                margin-bottom: 1rem;
+                color: var(--text-color);
+            }
+
+            .price-amount {
+                font-size: 3rem;
+                font-weight: 700;
+                color: var(--primary-color);
+                margin-bottom: 1rem;
+            }
+
+            .price-period {
+                font-size: 1rem;
+                color: var(--light-text);
+                margin-bottom: 2rem;
+            }
+
+            .price-features {
+                list-style: none;
+                margin-bottom: 2rem;
+                text-align: left;
+            }
+
+            .price-features li {
+                margin-bottom: 0.75rem;
+                color: var(--text-color);
+                display: flex;
+                align-items: center;
+            }
+
+            .price-features li::before {
+                content: "✓";
+                color: var(--primary-color);
+                margin-right: 0.5rem;
+                font-weight: bold;
+            }
+
+            .price-button {
+                display: inline-block;
+                padding: 0.75rem 1.5rem;
+                background-color: var(--primary-color);
+                color: white;
+                border-radius: 0.5rem;
+                text-decoration: none;
+                transition: background-color 0.3s ease;
+                width: 100%;
+            }
+
+            .price-button:hover {
+                background-color: var(--secondary-color);
+            }
+
+            @media (max-width: 768px) {
+                .pricing-grid {
+                    grid-template-columns: 1fr;
+                    max-width: 400px;
+                    margin-left: auto;
+                    margin-right: auto;
+                }
+            }
+
+            .footer {
+                background-color: var(--light-background);
+                padding: 2rem 0;
+                margin-top: 4rem;
+            }
+
+            .footer-content {
+                display: flex;
+                justify-content: center;
+                gap: 2rem;
+            }
+
+            .footer-link {
+                color: var(--light-text);
+                text-decoration: none;
+                transition: color 0.3s ease;
+            }
+
+            .footer-link:hover {
+                color: var(--primary-color);
+            }
+        </style>
+    </head>
+    <body>
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">Welcome to Our Modern WebApp</h1>
+                <p class="hero-subtitle">
+                    Experience the next generation of web applications with our innovative platform.
+                    Built for performance, designed for success.
+                </p>
+                <a href="#contactForm" class="button" onclick="scrollToForm(event)">Get Started</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🚀</div>
+                        <h3 class="feature-title">Lightning Fast</h3>
+                        <p class="feature-description">
+                            Optimized for speed and performance, ensuring the best user experience.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3 class="feature-title">Secure</h3>
+                        <p class="feature-description">
+                            Built with security in mind, protecting your data at every step.
+                        </p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">📱</div>
+                        <h3 class="feature-title">Responsive</h3>
+                        <p class="feature-description">
+                            Works perfectly on all devices, from mobile to desktop.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="pricing">
+            <div class="container">
+                <h2 class="pricing-title">Simple, Transparent Pricing</h2>
+                <p class="pricing-subtitle">Choose the perfect plan for your needs. No hidden fees, no surprises.</p>
+                
+                <div class="pricing-grid">
+                    <div class="pricing-card">
+                        <h3 class="price-name">Starter</h3>
+                        <div class="price-amount">$29</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>Basic Features</li>
+                            <li>Up to 5 Users</li>
+                            <li>10GB Storage</li>
+                            <li>Basic Support</li>
+                        </ul>
+                        <a href="#contactForm" class="price-button" onclick="scrollToForm(event)">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card popular">
+                        <div class="popular-badge">Popular</div>
+                        <h3 class="price-name">Professional</h3>
+                        <div class="price-amount">$79</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>All Starter Features</li>
+                            <li>Up to 20 Users</li>
+                            <li>50GB Storage</li>
+                            <li>Priority Support</li>
+                            <li>Advanced Analytics</li>
+                        </ul>
+                        <a href="#contactForm" class="price-button" onclick="scrollToForm(event)">Get Started</a>
+                    </div>
+
+                    <div class="pricing-card">
+                        <h3 class="price-name">Enterprise</h3>
+                        <div class="price-amount">$199</div>
+                        <div class="price-period">per month</div>
+                        <ul class="price-features">
+                            <li>All Pro Features</li>
+                            <li>Unlimited Users</li>
+                            <li>500GB Storage</li>
+                            <li>24/7 Support</li>
+                            <li>Custom Integration</li>
+                            <li>Dedicated Manager</li>
+                        </ul>
+                        <a href="#contactForm" class="price-button" onclick="scrollToForm(event)">Get Started</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta">
+            <div class="container">
+                <h2 class="cta-title">Get in Touch</h2>
+                <p class="cta-description">
+                    Fill out the form below and we'll get back to you as soon as possible.
+                </p>
+                
+                <div class="form-container">
+                    <form id="contactForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Full Name</label>
+                            <input type="text" id="name" name="name" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" id="email" name="email" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-input" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service" class="form-label">Interested In</label>
+                            <select id="service" name="service" class="form-select" required>
+                                <option value="">Select a service</option>
+                                <option value="consultation">Consultation</option>
+                                <option value="development">Development</option>
+                                <option value="support">Support</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea id="message" name="message" class="form-input" rows="4" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                    <div id="successMessage" class="success-message">
+                        Thank you! Your message has been sent successfully.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="footer-content">
+                    <a href="/privacy" class="footer-link">Privacy Policy</a>
+                    <a href="/contact" class="footer-link">Contact Us</a>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            async function handleSubmit(event) {
+                event.preventDefault();
+                
+                const form = event.target;
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+                
+                try {
+                    // Отправляем данные в Telegram бота
+                    const response = await fetch('/submit-form', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data)
+                    });
+
+                    if (response.ok) {
+                        // Показываем сообщение об успехе
+                        form.style.display = 'none';
+                        document.getElementById('successMessage').style.display = 'block';
+                    } else {
+                        throw new Error('Failed to submit form');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('Sorry, there was an error submitting your form. Please try again.');
+                }
+            }
+
+            function scrollToForm(event) {
+                event.preventDefault();
+                const form = document.getElementById('contactForm');
+                form.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        </script>
+    </body>
+</html> 
